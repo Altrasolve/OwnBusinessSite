@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Altrasolve | Business Software That Drives Growth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* লোগোর কালার প্যালেট অনুযায়ী ভ্যারিয়েবল পরিবর্তন করা হয়েছে */
+        :root {
+            --primary: #0066b3; /* লোগোর মিডিয়াম ব্লু */
+            --primary-dark: #093554; /* লোগোর সিগনেচার ডার্ক নেভি ব্লু */
+            --primary-light: #e0f2fe; /* লোগোর লাইট স্কাই ব্লু ব্যাকগ্রাউন্ড */
+            --accent: #38bdf8; /* লোগোর উজ্জ্বল আকাশী */
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --text: #093554; /* সাধারণ টেক্সট এখন লোগোর ডার্ক ব্লু */
+            --text-secondary: #475569;
+            --border: #e2e8f0;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-md: 0 8px 30px rgba(9,53,84,0.06);
+            --shadow-lg: 0 20px 50px rgba(0,102,179,0.12);
+            --radius: 22px;
+            --radius-sm: 14px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0,102,179,0.04);
+            animation: shapeFloat 18s infinite ease-in-out;
+        }
+
+            .shape:nth-child(1) {
+                width: 600px;
+                height: 600px;
+                top: -120px;
+                left: -120px;
+            }
+
+            .shape:nth-child(2) {
+                width: 450px;
+                height: 450px;
+                bottom: -100px;
+                right: -80px;
+                background: rgba(56,189,248,0.04);
+                animation-delay: -7s;
+            }
+
+        @keyframes shapeFloat {
+            0%,100% {
+                transform: translate(0,0) scale(1);
+            }
+
+            33% {
+                transform: translate(40px,-30px) scale(1.04);
+            }
+
+            66% {
+                transform: translate(-20px,20px) scale(0.96);
+            }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+            padding: 10px 0;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            position: relative;
+            z-index: 1001;
+        }
+
+            .logo img {
+                width: 72px;
+                height: 72px;
+                object-fit: contain;
+                display: block;
+                pointer-events: none;
+            }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 6px;
+            align-items: center;
+        }
+
+            .nav-links a {
+                text-decoration: none;
+                color: var(--text-secondary);
+                padding: 8px 18px;
+                border-radius: 50px;
+                font-weight: 600;
+                font-size: 0.9rem;
+                transition: 0.3s;
+            }
+
+                .nav-links a:hover, .nav-links a.active {
+                    background: var(--primary-light);
+                    color: var(--primary);
+                }
+
+        .nav-cta {
+            background: var(--primary) !important;
+            color: #fff !important;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 12px rgba(0,102,179,0.25);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            position: relative;
+            z-index: 1001;
+        }
+
+            .hamburger span {
+                width: 24px;
+                height: 2px;
+                background: var(--text);
+                border-radius: 4px;
+                transition: 0.3s;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+        section {
+            position: relative;
+            z-index: 1;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 90px 24px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+            line-height: 1.2;
+            color: var(--primary-dark);
+        }
+
+        .highlight {
+            color: var(--primary);
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin-bottom: 40px;
+        }
+
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.4rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.15;
+            color: var(--primary-dark);
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin: 20px 0 28px;
+            max-width: 520px;
+        }
+
+        .hero-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .abstract-circle {
+            width: 340px;
+            height: 340px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-light), rgba(0,102,179,0.08));
+            box-shadow: 0 0 90px rgba(0,102,179,0.15);
+            animation: floatHero 5s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+            .abstract-circle i {
+                font-size: 5rem;
+                color: var(--primary);
+                opacity: 0.8;
+            }
+
+        @keyframes floatHero {
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 32px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 8px 25px rgba(0,102,179,0.35);
+        }
+
+            .btn-primary:hover {
+                background: var(--primary-dark);
+                transform: translateY(-3px);
+            }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+            .btn-outline:hover {
+                background: var(--primary-light);
+            }
+
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .focus-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 36px 28px;
+            transition: 0.3s;
+            cursor: default;
+            box-shadow: var(--shadow-sm);
+        }
+
+            .focus-card:hover {
+                transform: translateY(-8px);
+                box-shadow: var(--shadow-lg);
+                border-color: var(--primary);
+            }
+
+        .focus-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .focus-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--primary-dark);
+        }
+
+        .focus-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 24px;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+            box-shadow: var(--shadow-sm);
+        }
+
+            .project-card:hover {
+                transform: translateY(-6px);
+                box-shadow: var(--shadow-lg);
+            }
+
+        .project-img {
+            height: 160px;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .project-body {
+            padding: 22px 24px;
+        }
+
+            .project-body h4 {
+                font-weight: 700;
+                margin-bottom: 6px;
+                color: var(--primary-dark);
+            }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(6,1fr);
+            gap: 12px;
+            position: relative;
+        }
+
+            .process-steps::before {
+                content: '';
+                position: absolute;
+                top: 40px;
+                left: 8%;
+                right: 8%;
+                height: 2px;
+                background: var(--primary);
+                opacity: 0.2;
+                z-index: 0;
+            }
+
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            transition: 0.3s;
+        }
+
+            .step:hover {
+                transform: translateY(-6px);
+            }
+
+        .step-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            margin: 0 auto 14px;
+            font-size: 1.3rem;
+            transition: 0.3s;
+            color: var(--primary);
+        }
+
+        .step:hover .step-circle {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(0,102,179,0.4);
+        }
+
+        .step h5 {
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--primary-dark);
+        }
+
+        .step p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-visual {
+            background: var(--primary-light);
+            border-radius: var(--radius);
+            padding: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .branch-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .branch {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 18px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            color: var(--primary-dark);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .form-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 36px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .info-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .info-card {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: 0.3s;
+            color: var(--primary-dark);
+        }
+
+            .info-card:hover {
+                border-color: var(--primary);
+            }
+
+        input, textarea {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--primary-dark);
+        }
+
+            input:focus, textarea:focus {
+                outline: none;
+                border-color: var(--primary);
+                box-shadow: 0 0 0 3px rgba(0,102,179,0.1);
+            }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.8s ease;
+        }
+
+            .reveal.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        @media (max-width:1024px) {
+            .hero-grid, .about-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(3,1fr);
+            }
+
+                .process-steps::before {
+                    display: none;
+                }
+
+            .focus-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+
+        @media (max-width:768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                gap: 16px;
+                transition: 0.4s;
+                padding: 40px;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.05);
+                z-index: 1000;
+            }
+
+                .nav-links.active {
+                    right: 0;
+                }
+
+            .projects-grid, .focus-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <nav id="nav">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="A_logo2.png" alt="Altrasolve Logo" />
+                Altrasolve
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#focus">Solutions</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact" class="nav-cta">Get Started</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section id="home">
+        <div class="hero-grid">
+            <div class="hero-content reveal">
+                <span class="section-tag">🚀 Software That Solves Real Business Problems</span>
+                <h1>We <span class="highlight">Increase Sales</span>, Cut Costs & Make Work Simple</h1>
+                <p>We analyze your unique challenges and build custom digital tools that directly improve your bottom line. No fluff, just measurable impact.</p>
+                <div class="btn-group">
+                    <a href="#focus" class="btn btn-primary"><i class="fas fa-chart-line"></i> How We Help</a>
+                    <a href="#contact" class="btn btn-outline"><i class="fas fa-comments"></i> Talk to Us</a>
+                </div>
+            </div>
+            <div class="hero-visual reveal">
+                <div class="abstract-circle">
+                    <i class="fas fa-rocket"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="focus">
+        <span class="section-tag">💡 Our Promise</span>
+        <h2 class="section-title">We Turn <span class="highlight">Business Problems</span> into Smart Software</h2>
+        <p class="subtitle">Every solution we build is laser‑focused on making your business more profitable and efficient.</p>
+        <div class="focus-grid">
+            <div class="focus-card reveal">
+                <div class="focus-icon"><i class="fas fa-chart-bar"></i></div>
+                <h3>Boost Sales</h3>
+                <p>E‑commerce platforms, CRM systems, and lead generation tools that convert visitors into customers.</p>
+            </div>
+            <div class="focus-card reveal">
+                <div class="focus-icon"><i class="fas fa-piggy-bank"></i></div>
+                <h3>Reduce Costs</h3>
+                <p>Automate repetitive tasks, optimize workflows, and eliminate operational waste with intelligent software.</p>
+            </div>
+            <div class="focus-card reveal">
+                <div class="focus-icon"><i class="fas fa-bolt"></i></div>
+                <h3>Simplify Everything</h3>
+                <p>Intuitive dashboards, integrated systems, and mobile apps that make daily operations effortless.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <span class="section-tag">📁 5+ Successful Projects</span>
+        <h2 class="section-title">Real <span class="highlight">Business Results</span></h2>
+        <p class="subtitle">Here's how we helped companies solve critical challenges and grow.</p>
+        <div class="projects-grid">
+            <div class="project-card reveal">
+                <div class="project-img"><i class="fas fa-shopping-cart"></i></div>
+                <div class="project-body"><h4>E Brief Management</h4><p>Increased sales by 40% with AI recommendations.</p><div class="tags"><span class="tag">React</span><span class="tag">Node</span></div></div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-img"><i class="fas fa-hospital"></i></div>
+                <div class="project-body"><h4>Healthcare Ops</h4><p>Reduced admin costs by 35% via automation.</p><div class="tags"><span class="tag">Python</span><span class="tag">Angular</span></div></div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-img"><i class="fas fa-chart-pie"></i></div>
+                <div class="project-body"><h4>BI Dashboard</h4><p>Cut reporting time by 80% for faster decisions.</p><div class="tags"><span class="tag">Vue</span><span class="tag">D3</span></div></div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-img"><i class="fas fa-graduation-cap"></i></div>
+                <div class="project-body"><h4>E‑Learning Platform</h4><p>Student engagement improved by 3x.</p><div class="tags"><span class="tag">Next.js</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process">
+        <span class="section-tag">🔄 How We Work</span>
+        <h2 class="section-title">From <span class="highlight">Problem to Solution</span> in 6 Steps</h2>
+        <div class="process-steps">
+            <div class="step reveal"><div class="step-circle">1</div><h5>Discovery</h5><p>Understand your business & pain points.</p></div>
+            <div class="step reveal"><div class="step-circle">2</div><h5>Strategy</h5><p>Map software to sales/cost goals.</p></div>
+            <div class="step reveal"><div class="step-circle">3</div><h5>Design</h5><p>Prototype that simplifies workflows.</p></div>
+            <div class="step reveal"><div class="step-circle">4</div><h5>Development</h5><p>Agile sprints with weekly demos.</p></div>
+            <div class="step reveal"><div class="step-circle">5</div><h5>Testing</h5><p>Ensure zero friction for users.</p></div>
+            <div class="step reveal"><div class="step-circle">6</div><h5>Launch & Grow</h5><p>Measure impact, iterate, scale.</p></div>
+        </div>
+    </section>
+
+    <section id="about">
+        <span class="section-tag">🏢 About Altrasolve</span>
+        <div class="about-grid">
+            <div class="about-visual reveal">
+                <i class="fas fa-building"></i>
+            </div>
+            <div class="reveal">
+                <h2 class="section-title"><span class="highlight">15+ Happy Clients</span>, 2 Offices</h2>
+                <p style="color:var(--text-secondary);">We are a passionate team dedicated to solving business challenges through elegant, effective software. Located in Cumilla and Mymensingh, we serve clients across Bangladesh.</p>
+                <div class="branch-cards">
+                    <div class="branch"><strong><i class="fas fa-map-marker-alt"></i> London Tower, Rajgonj</strong><br>Cumilla</div>
+                    <div class="branch"><strong><i class="fas fa-map-marker-alt"></i> Netrekona</strong><br>Mymensingh</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <span class="section-tag">📬 Let's Talk</span>
+        <h2 class="section-title">Ready to <span class="highlight">Solve Your Business Problem?</span></h2>
+        <div class="contact-grid">
+            <div class="form-card reveal">
+                <form action="https://api.web3forms.com/submit" method="POST" id="contactForm">
+                    <input type="hidden" name="access_key" value="8345cf4b-d63b-4f5b-82ae-32fe65d89359">
+                    <input type="text" name="name" placeholder="Your Name" required style="margin-bottom:16px;">
+                    <input type="email" name="email" placeholder="Email Address" required style="margin-bottom:16px;">
+                    <textarea name="message" rows="4" placeholder="Tell us about your challenge..." required style="margin-bottom:16px;"></textarea>
+                    <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fas fa-paper-plane"></i> Send Message</button>
+                </form>
+            </div>
+            <div class="info-cards reveal">
+                <div class="info-card"><i class="fas fa-phone-alt" style="font-size:1.4rem; color:var(--primary);"></i><div><strong>01611829628</strong><p>Call or WhatsApp</p></div></div>
+                <div class="info-card"><i class="fas fa-envelope" style="font-size:1.4rem; color:var(--primary);"></i><div><strong>alrasolve@gmail.com</strong><p>We reply within 2 hours</p></div></div>
+                <div class="info-card"><i class="fas fa-map-marker-alt" style="font-size:1.4rem; color:var(--primary);"></i><div><strong>London Tower, Rajgonj, Cumilla</strong></div></div>
+                <div class="info-card"><i class="fas fa-map-marker-alt" style="font-size:1.4rem; color:var(--primary);"></i><div><strong>Netrekona, Mymensingh</strong></div></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>© 2026 Altrasolve — Software that makes business better. 15+ happy clients and counting.</footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.2 });
+        revealElements.forEach(el => observer.observe(el));
+
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            const name = this.querySelector('input[name="name"]').value.trim();
+            const email = this.querySelector('input[name="email"]').value.trim();
+            const message = this.querySelector('textarea[name="message"]').value.trim();
+            if (!name || !email || !message) {
+                e.preventDefault();
+                alert('Please fill in all required fields.');
+                return;
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) current = section.getAttribute('id');
+            });
+            document.querySelectorAll('.nav-links a').forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
